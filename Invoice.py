@@ -18,10 +18,11 @@ class Invoice:
 
     def totalDiscount(self, products):
         total_discount = 0
-        for k, v, in products.items():
-            total_discount += (int(v['qnt']) * float(v['unit_price'])) * float(v['discount']) / 100
-            total_discount = round(total_discount, 2)
-            return total_discount
+        for k, v in products.items():
+            total_discount += float(v['unit_price']) * int(v['qnt']) * float(v['discount'])/100
+        total_discount = round(total_discount, 2)
+        self.total_discount = total_discount
+        return total_discount
 
     def totalPurePrice(self, products):
         total_pure_price = self.totalImpurePrice(products) - self.totalDiscount(products)
@@ -43,3 +44,16 @@ class Invoice:
                 continue
             else:
                 return userInput
+
+    def totalQnt(self, products):
+        total_Qunt = 0
+        for k,v in products.items():
+            total_Qunt += int(v['qnt'])
+        return total_Qunt
+
+    def ProductQntNotZero(self, products):
+        notZero = True
+        for k, v in products.items():
+            if v['qnt'] == 0:
+                notZero = False
+        return notZero

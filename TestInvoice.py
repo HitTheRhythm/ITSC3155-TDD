@@ -30,5 +30,12 @@ def test_CanCalucateTotalPurePrice(invoice, products):
     invoice.totalPurePrice(products)
     assert invoice.totalPurePrice(products) == 69.38
 
+# this test case is to make sure the quantity of product is not zero
+def test_ProductQntNotZero(invoice, products):
+    invoice.ProductQntNotZero(products)
+    assert invoice.ProductQntNotZero(products) == True
 
-
+# this test case is to test the total quantity of products
+def test_CanCalucateTotalQnt(invoice, products):
+    invoice.totalQnt(products)
+    assert invoice.totalQnt(products) == 15
